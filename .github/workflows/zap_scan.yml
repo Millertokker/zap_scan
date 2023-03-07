@@ -7,10 +7,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install ZAP
-        run: sudo apt-get install -y zaproxy
+      - name: Download ZAP
+        run: |
+          wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.0/ZAP_2.11.0_Linux.tar.gz
+          tar -xzf ZAP_2.11.0_Linux.tar.gz
+          mv ZAP_2.11.0 /opt/zaproxy
+          
       - name: Start ZAP
-        run: zap.sh -daemon
+        run: /opt/zaproxy/zap.sh -daemon
+
       - name: Wait for ZAP to start
         run: sleep 10
       - name: Run ZAP scan
