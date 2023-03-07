@@ -22,7 +22,7 @@ jobs:
         run: pip install zapcli
 
       - name: Run ZAP scan
-        run: zap-cli --zap-url http://localhost -p 8090 --quick-scan --output /zap/report.html http://vapi.apisec.ai/vapi
+        run: zap-cli --zap-url http://localhost -p 8090 --scan --output /zap/report.html http://vapi.apisec.ai/vapi
       - name: Save ZAP report as artifact
         uses: actions/upload-artifact@v2
         with:
