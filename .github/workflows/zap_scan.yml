@@ -18,6 +18,9 @@ jobs:
 
       - name: Wait for ZAP to start
         run: sleep 10
+      - name: Install zap-cli
+        run: pip install zapcli
+
       - name: Run ZAP scan
         run: zap-cli --zap-url http://localhost -p 8090 --spider --scan --output /zap/report.html http://vapi.apisec.ai/vapi
       - name: Save ZAP report as artifact
